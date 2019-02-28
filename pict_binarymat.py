@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import openpyxl as px
 
 # PILでsample.jpgを開いてグレースケール画像に変換し、NumPy配列に変換
 im = np.array(Image.open('sample.jpg').convert('L'))
@@ -81,3 +82,20 @@ for c in range(bin_mat.shape[1],0,-1):
     break
 
 print(b_top,b_bottom,b_left,b_right)
+
+#新規作成
+wb = px.Workbook()
+
+#保存
+wb.save('FILEPATH')
+
+#active sheet
+ws = wb.active
+
+#ws['A1'].value = 'Hello World'
+from datetime import datetime as dt
+ws.cell(row=2, column=2).value = b_top
+ws.cell(row=3, column=2).value = b_bottom
+ws.cell(row=4, column=2).value = b_left
+ws.cell(row=5, column=2).value = b_right
+
